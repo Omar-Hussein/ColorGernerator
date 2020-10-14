@@ -1,4 +1,6 @@
 /* Control themes */
+const LIGHT_THEME = "light"
+const DARK_THEME = "dark"
 function toggleTheme() {
   document.documentElement.hasAttribute("theme")
     ? activateLightTheme()
@@ -10,11 +12,21 @@ function getThemeIconElement() {
 function activateDarkTheme() {
   getThemeIconElement().style.background = `url("icons/light-theme.svg")`
   document.documentElement.setAttribute("theme", "dark")
+  saveTheme(DARK_THEME)
 }
 function activateLightTheme() {
   getThemeIconElement().style.background = `url("icons/dark-theme.svg")`
   document.documentElement.removeAttribute("theme")
+  saveTheme(LIGHT_THEME)
 }
+function saveTheme(theme) {
+  localStorage.setItem("theme", theme)
+}
+;(function activatedSavedTheme() {
+  localStorage.getItem("theme") === LIGHT_THEME
+    ? activateLightTheme()
+    : activateDarkTheme()
+})()
 
 /* Color generator */
 const savedColors = []
