@@ -23,9 +23,9 @@ function saveTheme(theme) {
   localStorage.setItem("theme", theme)
 }
 ;(function activatedSavedTheme() {
-  localStorage.getItem("theme") === LIGHT_THEME
-    ? activateLightTheme()
-    : activateDarkTheme()
+  localStorage.getItem("theme") === DARK_THEME
+    ? activateDarkTheme()
+    : activateLightTheme()
 })()
 
 /* Color generator */
