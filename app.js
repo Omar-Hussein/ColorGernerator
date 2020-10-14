@@ -1,4 +1,4 @@
-/* Control the themes */
+/* Control themes */
 function toggleTheme() {
   document.documentElement.hasAttribute("theme")
     ? activateLightTheme()
@@ -16,7 +16,7 @@ function activateLightTheme() {
   document.documentElement.removeAttribute("theme")
 }
 
-/* The color generator */
+/* Color generator */
 const savedColors = []
 
 function getHexValues() {
@@ -39,9 +39,12 @@ function getHexValues() {
     "f",
   ]
 }
-/* Generate the random color */
+/* Generate random color */
 function getHexPreviewSpan() {
   return document.querySelector(".color-container__hexcode")
+}
+function getPreviewedHexValue() {
+  return getHexPreviewSpan().innerHTML
 }
 function getPreviewColorDiv() {
   return document.querySelector(".color-container__preview")
@@ -76,15 +79,26 @@ function showPreviousColor() {
   previewColor(savedColors[savedColors.length - 1])
 }
 
-/* Copy the hex code */
-function copyHexcodeToClipboard() {
-  // Get the text field
-  const elem = document.createElement("textarea")
-  elem.value = getHexPreviewSpan().innerHTML
-  document.body.appendChild(elem)
-  elem.select()
+/* Copy hexcode */
+function createElement(element) {
+  return document.createElement(element)
+}
+function copy(element) {
+  element.select()
   document.execCommand("copy")
-  document.body.removeChild(elem)
+}
+function appendToBody(element) {
+  document.body.appendChild(element)
+}
+function removeElement(element) {
+  document.body.removeChild(element)
+}
+function copyHexcodeToClipboard() {
+  const elementToCopy = createElement("textarea")
+  elementToCopy.value = getPreviewedHexValue()
+  appendToBody(elementToCopy)
+  copy(elementToCopy)
+  removeElement(elementToCopy)
   notify("Copied!")
 }
 
@@ -108,10 +122,9 @@ function hideNotification() {
   const notificationElement = getNotificationElement()
   doesContainNotificationShowClass() &&
     notificationElement.classList.remove("notification--show")
-  // setTimeout(() => addMessageToNotification(""), 700)
 }
 function notify(message) {
-  // Check first if there's notification in place
+  // Check first if there's notification taking place
   if (doesContainNotificationShowClass()) return
   addMessageToNotification(message)
   setTimeout(showNotification, 100)
