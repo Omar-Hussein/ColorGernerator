@@ -3,7 +3,7 @@
   padding: 0
   box-sizing: border-box
 
-:root[theme="dark"]
+\:root[theme="dark"]
   --color-background: #21252b
   --color-primary: #30343a
   --color-secondary: #282d34
@@ -11,7 +11,7 @@
   --color-box-shadow: #353b4691
   --color-notification: #090b0e
 
-:root
+\:root
   --color-background: #ffffff
   --color-primary: #d1d7e0
   --color-secondary: #eaedf3
@@ -88,7 +88,7 @@ body
   &__preview
     box-shadow: 0 0 50px 12px var(--color-box-shadow)
     border-radius: 30px
-    +size(50vh)
+    +size(100%, 50vh)
     cursor: pointer
 
   &__hexcode
@@ -126,10 +126,11 @@ body
       span
         justify-self: start
       svg
+        transition: all ease-in-out 0.5s
         justify-self: end
       &:hover
         svg
-          animation: rotate 0.7s linear infinite
+          transform: rotate(270deg)
     &--back
       grid-area: back
       position: relative
@@ -194,10 +195,3 @@ body
     bottom: unset
     &--show
       top: 30px
-
-  @keyframes rotate
-    0%
-      transform: rotate(0deg)
-
-    100%
-      transform: rotate(360deg)
