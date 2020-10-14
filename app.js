@@ -110,22 +110,22 @@ function addMessageToNotification(message) {
   const notificationElement = getNotificationElement()
   notificationElement.innerHTML = message
 }
-function doesContainNotificationShowClass() {
+function isNotificationShown() {
   return getNotificationElement().classList.contains("notification--show")
 }
 function showNotification() {
   const notificationElement = getNotificationElement()
-  !doesContainNotificationShowClass() &&
+  !isNotificationShown() &&
     notificationElement.classList.add("notification--show")
 }
 function hideNotification() {
   const notificationElement = getNotificationElement()
-  doesContainNotificationShowClass() &&
+  isNotificationShown() &&
     notificationElement.classList.remove("notification--show")
 }
 function notify(message) {
   // Check first if there's notification taking place
-  if (doesContainNotificationShowClass()) return
+  if (isNotificationShown()) return
   addMessageToNotification(message)
   setTimeout(showNotification, 100)
   setTimeout(hideNotification, 1100)
