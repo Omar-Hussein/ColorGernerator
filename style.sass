@@ -1,0 +1,203 @@
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+
+:root[theme="dark"]
+  --color-background: #21252b
+  --color-primary: #30343a
+  --color-secondary: #282d34
+  --color-font: #d7dae0
+  --color-box-shadow: #353b4691
+  --color-notification: #090b0e
+
+:root
+  --color-background: #ffffff
+  --color-primary: #d1d7e0
+  --color-secondary: #eaedf3
+  --color-font: #383b3f
+  --color-box-shadow: #6161618c
+  --color-notification: #bcc8da
+  --font-family-primary: 'Poppins', sans-serif
+
+$nav-height: 60px
+
+=button-reset
+  background: none
+  border: none
+  text-transform: capitalize
+  cursor: pointer
+  &:focus
+    border: none
+    outline: none
+
+=size($width, $height: $width)
+  height: $height
+  width: $width
+=center-v
+  top: 50%
+  transform: translateY(-50%)
+=center-h
+  left: 50%
+  transform: translateX(-50%)
+=center
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+
+*
+  transition: color 0.2s ease-in-out, background 0.2s ease-in-out
+body
+  background: var(--color-background)
+  max-height: 100vh
+  overflow: hidden
+  font-family: var(--font-family-primary)
+  *
+    color: var(--color-font)
+
+.navbar
+  height: $nav-height
+  position: relative
+  width: 100vw
+  padding: 0 20px
+  &__title
+    text-transform: capitalize
+    font-weight: 600
+    line-height: $nav-height
+    display: inline-block
+  &__list
+    position: absolute
+    list-style: none
+    display: inline-block
+    right: 20px
+    +center-v
+
+  &__list-button
+    +button-reset
+  &__theme-icon
+    display: inline-block
+    +size(40px)
+
+.color-container
+  padding: 30px 20%
+  min-height: calc(100vh - #{$nav-height})
+  display: grid
+  grid-template-rows: 1fr 20px auto
+  place-items: center
+  grid-gap: 20px
+  &__preview
+    box-shadow: 0 0 50px 12px var(--color-box-shadow)
+    border-radius: 30px
+    +size(50vh)
+    cursor: pointer
+
+  &__hexcode
+    font-size: 1.5rem
+    font-weight: 600
+  &__controls
+    display: grid
+    grid-template-columns: 120px 1fr
+    grid-gap: 20px
+    grid-template-areas: "generate generate" "back copy"
+    width: 100%
+  &__button
+    +button-reset
+    // R
+    font-weight: 600
+    font-family: var(--font-family-primary)
+    background: var(--color-secondary)
+    border-radius: 10px
+    padding: 10px 25px
+    font-size: 1.2rem
+    min-height: 50px
+    svg
+      fill: var(--color-font)
+      +size(30px)
+      transition: all ease-in-out 0.2s
+    &--generate
+      background: var(--color-primary)
+      padding: 15px 30px
+      grid-area: generate
+      font-size: 2rem
+      display: grid
+      align-items: center
+      grid-template-columns: auto auto
+      grid-gap: 10px
+      span
+        justify-self: start
+      svg
+        justify-self: end
+      &:hover
+        svg
+          animation: rotate 0.7s linear infinite
+    &--back
+      grid-area: back
+      position: relative
+      overflow: hidden
+    &--copy
+      grid-area: copy
+      position: relative
+      overflow: hidden
+
+    &--copy, &--back
+      svg
+        position: absolute
+        +center-v
+        // R
+        left: -30px
+        display: inline-block
+      span
+        position: absolute
+        transition: all ease-in-out 0.2s
+        white-space: nowrap
+        +center
+      &:hover
+        svg
+          +center
+        span
+          left: 200%
+
+.notification
+  position: absolute
+  border-radius: 10px
+  background: var(--color-notification)
+  right: 30px
+  bottom: -50px
+  padding: 10px 20px
+  font-size: 1.5rem
+  color: var(--color-font)
+  transition: all ease-in-out 0.2s
+  &--show
+    bottom: 20px
+
+@media screen and (max-width: 900px)
+  .color-container
+    padding: 30px 15%
+
+@media screen and (max-width: 600px)
+  .color-container
+    padding: 30px 7%
+    &__preview
+      box-shadow: none
+      +size(100%)
+    &__button
+      font-size: 1rem
+      padding: 10px 20px
+      &--generate
+        padding: 10px 25px
+        font-size: 1.5rem
+
+  .notification
+    top: -60px
+    left: 20px
+    right: unset
+    bottom: unset
+    &--show
+      top: 30px
+
+  @keyframes rotate
+    0%
+      transform: rotate(0deg)
+
+    100%
+      transform: rotate(360deg)
