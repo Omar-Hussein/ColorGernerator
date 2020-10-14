@@ -72,7 +72,8 @@ function previewColor(color) {
 
 /* Get last color */
 function removeLastSavedColor() {
-  if (savedColors.length > 1) savedColors.pop()
+  if (savedColors.length === 1) return notify("First color!")
+  savedColors.pop()
 }
 function showPreviousColor() {
   removeLastSavedColor()
