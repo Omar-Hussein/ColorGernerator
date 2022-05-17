@@ -9,18 +9,19 @@
   --color-secondary: #282d34
   --color-font: #d7dae0
   --color-box-shadow: #353b4691
-  --color-notification: #090b0e
+  --color-notification: #090b0ea4
 
 \:root
-  --color-background: #ffffff
+  --color-background: #f7f7f7
   --color-primary: #d1d7e0
   --color-secondary: #eaedf3
   --color-font: #383b3f
   --color-box-shadow: #6161618c
-  --color-notification: #bcc8da
+  --color-notification: #bcc8daa4
   --font-family-primary: 'Poppins', sans-serif
 
-$nav-height: 60px
+  --nav-height: 100px
+
 
 =button-reset
   background: none
@@ -45,64 +46,87 @@ $nav-height: 60px
   left: 50%
   transform: translate(-50%, -50%)
 
+=hover
+  @media (hover: hover)
+    &:hover
+      @content
+
 *
   transition: color 0.2s ease-in-out, background 0.2s ease-in-out
 body
   background: var(--color-background)
-  max-height: 100vh
-  overflow: hidden
   font-family: var(--font-family-primary)
   *
     color: var(--color-font)
 
+
+.container
+  --container-width: 1200px
+  --container-padding: 10px
+
+  max-width: var(--container-width)
+
+  padding-left: var(--container-padding)
+  padding-right: var(--container-padding)
+
+  margin-left: auto
+  margin-right: auto
+
+  @media screen and (max-width: calc(var(--container-padding) * 2 + var(--container-width)))
+    max-width: 100%
+
+
+
 .navbar
-  height: $nav-height
-  position: relative
-  width: 100vw
-  padding: 0 20px
+  height: var(--nav-height)
+  display: flex
+  align-items: center
+  justify-content: space-between
+
   &__title
     text-transform: capitalize
     font-weight: 600
-    line-height: $nav-height
-    display: inline-block
-  &__list
-    position: absolute
-    list-style: none
-    display: inline-block
-    right: 20px
-    +center-v
+    display: flex
+    align-items: center
+    gap: 5px
 
   &__list-button
     +button-reset
   &__theme-icon
-    display: inline-block
     +size(40px)
 
 .color-container
-  padding: 30px 20%
-  min-height: calc(100vh - #{$nav-height})
   display: grid
-  grid-template-rows: 1fr 20px auto
-  place-items: center
-  grid-gap: 20px
+  grid-template-rows: 1fr auto auto
+  gap: 5px
+  padding-top: 20px
+  padding-bottom: 20px
+
   &__preview
-    box-shadow: 0 0 50px 12px var(--color-box-shadow)
+    box-shadow: 0 0 10px 3px var(--color-box-shadow)
     border-radius: 30px
     +size(100%, 50vh)
     cursor: pointer
+    max-width: 600px
+    place-self: center
 
   &__hexcode
     font-size: 1.5rem
     font-weight: 600
+    text-align: center
+    margin-bottom: 20px
+
   &__controls
     display: grid
     grid-template-columns: 120px 1fr
     grid-gap: 20px
     grid-template-areas: "generate generate" "back copy"
     width: 100%
+    max-width: 800px
+    place-self: center
+
   &__button
     +button-reset
-    // R
     font-weight: 600
     font-family: var(--font-family-primary)
     background: var(--color-secondary)
@@ -110,14 +134,14 @@ body
     padding: 10px 25px
     font-size: 1.2rem
     min-height: 50px
+    overflow: hidden
     svg
       fill: var(--color-font)
       +size(30px)
       transition: all ease-in-out 0.2s
     &--generate
-      background: var(--color-primary)
-      padding: 15px 30px
       grid-area: generate
+      background: var(--color-primary)
       font-size: 2rem
       display: grid
       align-items: center
@@ -128,23 +152,21 @@ body
       svg
         transition: all ease-in-out 0.5s
         justify-self: end
-      &:hover
+
+      +hover
         svg
           transform: rotate(270deg)
+
     &--back
       grid-area: back
-      position: relative
-      overflow: hidden
     &--copy
       grid-area: copy
-      position: relative
-      overflow: hidden
 
     &--copy, &--back
+      position: relative
       svg
         position: absolute
         +center-v
-        // R
         left: -30px
         display: inline-block
       span
@@ -152,7 +174,8 @@ body
         transition: all ease-in-out 0.2s
         white-space: nowrap
         +center
-      &:hover
+
+      +hover
         svg
           +center
         span
@@ -162,36 +185,22 @@ body
   position: absolute
   border-radius: 10px
   background: var(--color-notification)
-  right: 30px
-  bottom: -50px
   padding: 10px 20px
   font-size: 1.5rem
   color: var(--color-font)
   transition: all ease-in-out 0.2s
-  &--show
-    bottom: 20px
 
-@media screen and (max-width: 900px)
-  .color-container
-    padding: 30px 15%
+  top: -60px
+  right: 20px
+  &--show
+    top: 30px
+
 
 @media screen and (max-width: 600px)
+  body
+    --nav-height: 60px
+
   .color-container
-    padding: 30px 7%
-    &__preview
-      box-shadow: none
-      +size(100%)
     &__button
       font-size: 1rem
       padding: 10px 20px
-      &--generate
-        padding: 10px 25px
-        font-size: 1.5rem
-
-  .notification
-    top: -60px
-    left: 20px
-    right: unset
-    bottom: unset
-    &--show
-      top: 30px

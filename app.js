@@ -1,3 +1,9 @@
+console.log(
+  `%chttps://omareloui.com %c${new Date().getFullYear()}`,
+  "color: #f5f5f5; background: #121212; padding: 5px 10px; font-size: 16px; margin: 10px 0; border-radius: 4px 0 0 4px",
+  "color: #121212; background: #f5f5f5; padding: 5px 10px; font-size: 16px; margin: 10px 0; border-radius: 0 4px 4px 0"
+)
+
 /* Control themes */
 const LIGHT_THEME = "light"
 const DARK_THEME = "dark"
@@ -10,12 +16,12 @@ function getThemeIconElement() {
   return document.querySelector(".navbar__theme-icon")
 }
 function activateDarkTheme() {
-  getThemeIconElement().style.background = `url("icons/light-theme.svg")`
+  getThemeIconElement().src = "/icons/light-theme.svg"
   document.documentElement.setAttribute("theme", "dark")
   saveTheme(DARK_THEME)
 }
 function activateLightTheme() {
-  getThemeIconElement().style.background = `url("icons/dark-theme.svg")`
+  getThemeIconElement().src = "/icons/dark-theme.svg"
   document.documentElement.removeAttribute("theme")
   saveTheme(LIGHT_THEME)
 }

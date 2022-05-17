@@ -11,17 +11,18 @@
   --color-secondary: #282d34;
   --color-font: #d7dae0;
   --color-box-shadow: #353b4691;
-  --color-notification: #090b0e;
+  --color-notification: #090b0ea4;
 }
 
 :root {
-  --color-background: #ffffff;
+  --color-background: #f7f7f7;
   --color-primary: #d1d7e0;
   --color-secondary: #eaedf3;
   --color-font: #383b3f;
   --color-box-shadow: #6161618c;
-  --color-notification: #bcc8da;
+  --color-notification: #bcc8daa4;
   --font-family-primary: 'Poppins', sans-serif;
+  --nav-height: 100px;
 }
 
 * {
@@ -31,8 +32,6 @@
 
 body {
   background: var(--color-background);
-  max-height: 100vh;
-  overflow: hidden;
   font-family: var(--font-family-primary);
 }
 
@@ -40,28 +39,45 @@ body * {
   color: var(--color-font);
 }
 
+.container {
+  --container-width: 1200px;
+  --container-padding: 10px;
+  max-width: var(--container-width);
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (max-width: calc(var(--container-padding) * 2 + var(--container-width))) {
+  .container {
+    max-width: 100%;
+  }
+}
+
 .navbar {
-  height: 60px;
-  position: relative;
-  width: 100vw;
-  padding: 0 20px;
+  height: var(--nav-height);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .navbar__title {
   text-transform: capitalize;
   font-weight: 600;
-  line-height: 60px;
-  display: inline-block;
-}
-
-.navbar__list {
-  position: absolute;
-  list-style: none;
-  display: inline-block;
-  right: 20px;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 5px;
 }
 
 .navbar__list-button {
@@ -77,34 +93,36 @@ body * {
 }
 
 .navbar__theme-icon {
-  display: inline-block;
   height: 40px;
   width: 40px;
 }
 
 .color-container {
-  padding: 30px 20%;
-  min-height: calc(100vh - 60px);
   display: -ms-grid;
   display: grid;
-  -ms-grid-rows: 1fr 20px auto;
-      grid-template-rows: 1fr 20px auto;
-  place-items: center;
-  grid-gap: 20px;
+  -ms-grid-rows: 1fr auto auto;
+      grid-template-rows: 1fr auto auto;
+  gap: 5px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .color-container__preview {
-  -webkit-box-shadow: 0 0 50px 12px var(--color-box-shadow);
-          box-shadow: 0 0 50px 12px var(--color-box-shadow);
+  -webkit-box-shadow: 0 0 10px 3px var(--color-box-shadow);
+          box-shadow: 0 0 10px 3px var(--color-box-shadow);
   border-radius: 30px;
   height: 50vh;
   width: 100%;
   cursor: pointer;
+  max-width: 600px;
+  place-self: center;
 }
 
 .color-container__hexcode {
   font-size: 1.5rem;
   font-weight: 600;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .color-container__controls {
@@ -115,6 +133,8 @@ body * {
   grid-gap: 20px;
       grid-template-areas: "generate generate" "back copy";
   width: 100%;
+  max-width: 800px;
+  place-self: center;
 }
 
 .color-container__button {
@@ -129,6 +149,7 @@ body * {
   padding: 10px 25px;
   font-size: 1.2rem;
   min-height: 50px;
+  overflow: hidden;
 }
 
 .color-container__button:focus {
@@ -145,12 +166,11 @@ body * {
 }
 
 .color-container__button--generate {
-  background: var(--color-primary);
-  padding: 15px 30px;
   -ms-grid-row: 1;
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
   grid-area: generate;
+  background: var(--color-primary);
   font-size: 2rem;
   display: -ms-grid;
   display: grid;
@@ -174,25 +194,27 @@ body * {
       justify-self: end;
 }
 
-.color-container__button--generate:hover svg {
-  -webkit-transform: rotate(270deg);
-          transform: rotate(270deg);
+@media (hover: hover) {
+  .color-container__button--generate:hover svg {
+    -webkit-transform: rotate(270deg);
+            transform: rotate(270deg);
+  }
 }
 
 .color-container__button--back {
   -ms-grid-row: 2;
   -ms-grid-column: 1;
   grid-area: back;
-  position: relative;
-  overflow: hidden;
 }
 
 .color-container__button--copy {
   -ms-grid-row: 2;
   -ms-grid-column: 2;
   grid-area: copy;
+}
+
+.color-container__button--copy, .color-container__button--back {
   position: relative;
-  overflow: hidden;
 }
 
 .color-container__button--copy svg, .color-container__button--back svg {
@@ -215,65 +237,41 @@ body * {
           transform: translate(-50%, -50%);
 }
 
-.color-container__button--copy:hover svg, .color-container__button--back:hover svg {
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-}
-
-.color-container__button--copy:hover span, .color-container__button--back:hover span {
-  left: 200%;
+@media (hover: hover) {
+  .color-container__button--copy:hover svg, .color-container__button--back:hover svg {
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+  }
+  .color-container__button--copy:hover span, .color-container__button--back:hover span {
+    left: 200%;
+  }
 }
 
 .notification {
   position: absolute;
   border-radius: 10px;
   background: var(--color-notification);
-  right: 30px;
-  bottom: -50px;
   padding: 10px 20px;
   font-size: 1.5rem;
   color: var(--color-font);
   -webkit-transition: all ease-in-out 0.2s;
   transition: all ease-in-out 0.2s;
+  top: -60px;
+  right: 20px;
 }
 
 .notification--show {
-  bottom: 20px;
-}
-
-@media screen and (max-width: 900px) {
-  .color-container {
-    padding: 30px 15%;
-  }
+  top: 30px;
 }
 
 @media screen and (max-width: 600px) {
-  .color-container {
-    padding: 30px 7%;
-  }
-  .color-container__preview {
-    -webkit-box-shadow: none;
-            box-shadow: none;
-    height: 100%;
-    width: 100%;
+  body {
+    --nav-height: 60px;
   }
   .color-container__button {
     font-size: 1rem;
     padding: 10px 20px;
-  }
-  .color-container__button--generate {
-    padding: 10px 25px;
-    font-size: 1.5rem;
-  }
-  .notification {
-    top: -60px;
-    left: 20px;
-    right: unset;
-    bottom: unset;
-  }
-  .notification--show {
-    top: 30px;
   }
 }
