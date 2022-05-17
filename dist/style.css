@@ -116,6 +116,7 @@ body * {
   cursor: pointer;
   max-width: 600px;
   place-self: center;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .color-container__hexcode {
