@@ -1,5 +1,3 @@
 # Color Generator
 
-A random color generator.
-
-Inspired by [colorspark.app](https://colorspark.app).
+A random color generator inspired by [colorspark.app](https://colorspark.app).
