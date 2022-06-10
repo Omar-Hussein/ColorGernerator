@@ -15,12 +15,37 @@
       "sizes": "any"
     },
     {
+      "src": "/images/logo_x128.png",
+      "sizes": "128x128"
+    },
+    {
       "src": "/images/logo_x192.png",
       "sizes": "192x192"
     },
     {
       "src": "/images/logo_x512.png",
       "sizes": "512x512"
+    },
+
+    {
+      "src": "/images/logo_mask.svg",
+      "sizes": "any",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/images/logo_mask_x128.png",
+      "sizes": "128x128",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/images/logo_mask_x192.png",
+      "sizes": "192x192",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/images/logo_mask_x512.png",
+      "sizes": "512x512",
+      "purpose": "maskable"
     }
   ]
 }
