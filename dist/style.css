@@ -202,7 +202,7 @@ body * {
       justify-self: end;
 }
 
-@media (hover: hover) {
+@media screen and (min-width: 400px) and (hover: hover) {
   .color-container__button--generate:hover svg {
     -webkit-transform: rotate(270deg);
             transform: rotate(270deg);
@@ -245,7 +245,7 @@ body * {
           transform: translate(-50%, -50%);
 }
 
-@media (hover: hover) {
+@media screen and (min-width: 400px) and (hover: hover) {
   .color-container__button--copy:hover svg, .color-container__button--back:hover svg {
     top: 50%;
     left: 50%;

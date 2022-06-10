@@ -47,9 +47,10 @@
   transform: translate(-50%, -50%)
 
 =hover
-  @media (hover: hover)
-    &:hover
-      @content
+  @media screen and (min-width: 400px)
+    @media (hover: hover)
+      &:hover
+        @content
 
 *
   transition: color 0.2s ease-in-out, background 0.2s ease-in-out
