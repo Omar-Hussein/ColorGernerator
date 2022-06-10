@@ -116,8 +116,10 @@ body * {
   -webkit-box-shadow: 0 0 10px 3px var(--color-box-shadow);
           box-shadow: 0 0 10px 3px var(--color-box-shadow);
   border-radius: 30px;
-  height: 50vh;
   width: 100%;
+  min-height: 450px;
+  height: 50vh;
+  max-height: 62vh;
   cursor: pointer;
   max-width: 600px;
   place-self: center;
