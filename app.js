@@ -4,6 +4,8 @@ console.log(
   "color: #121212; background: #f5f5f5; padding: 5px 10px; font-size: 16px; margin: 10px 0; border-radius: 0 4px 4px 0"
 )
 
+if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js")
+
 /* Control themes */
 const LIGHT_THEME = "light"
 const DARK_THEME = "dark"

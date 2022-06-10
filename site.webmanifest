@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+
+  "name": "Random Color Generator",
+  "short_name": "Color Generator",
+
+  "start_url": "/?source=pwa",
+  "display": "standalone",
+  "background_color": "#f7f7f7",
+  "theme_color": "#f47d16",
+
+  "icons": [
+    {
+      "src": "/images/logo.svg",
+      "sizes": "any"
+    },
+    {
+      "src": "/images/logo_x192.png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/images/logo_x512.png",
+      "sizes": "512x512"
+    }
+  ]
+}
